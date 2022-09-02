@@ -1,3 +1,3 @@
-import { getFriendsUseCase } from './getFriendsUseCase';
+import { sharedExpensesService } from './sharedExpensesService';
 
-export { getFriendsUseCase };
+export { sharedExpensesService };

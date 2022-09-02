@@ -8,7 +8,13 @@ export function sharedExpensesInMemoryRepository(): SharedExpensesRepository {
     return Promise.resolve(friends);
   }
 
+  function addFriend(friend: Friend): Promise<void> {
+    friends.push(friend);
+    return Promise.resolve();
+  }
+
   return {
     getFriends,
+    addFriend,
   };
 }

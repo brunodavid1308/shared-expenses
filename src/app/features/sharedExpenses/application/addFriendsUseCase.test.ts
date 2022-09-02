@@ -1,8 +1,8 @@
 import { SharedExpensesRepository } from '../domain/sharedExpensesRepository';
-import { getFriendsUseCase } from './getFriendsUseCase';
+import { addFriendUseCase } from './addFriendsUseCase';
 
-describe('GetFriendsUseCase', () => {
-  it('should get friends', async () => {
+describe('AddFriendsUseCase', () => {
+  it('should add a friend to the group of friends', async () => {
     const friendsExamples = [
       {
         id: '1',
@@ -17,9 +17,14 @@ describe('GetFriendsUseCase', () => {
       getFriends: jest.fn().mockResolvedValue(friendsExamples),
       addFriend: jest.fn().mockResolvedValue(null),
     };
+    const newFriend = {
+      id: '3',
+      name: 'Friend 3',
+    };
 
-    const friends = await getFriendsUseCase({ repository });
+    await addFriendUseCase({ repository }, newFriend);
 
-    expect(friends).toEqual(friendsExamples);
+    expect(repository.addFriend).toHaveBeenCalledTimes(1);
+    expect(repository.addFriend).toHaveBeenCalledWith(newFriend);
   });
 });
