@@ -3,8 +3,8 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { getFriendsQuery } from './features/sharedExpenses/application';
-import { ExpensesListComponent } from './features/sharedExpenses/delivery/ExpensesList/ExpensesList.component';
+import { getFriendsUseCase } from './features/sharedExpenses/application';
+import { ExpensesListComponent } from './features/sharedExpenses/delivery/expensesList/expensesList.component';
 import { sharedExpensesInMemoryRepository } from './features/sharedExpenses/infraestructure/SharedExpensesInMemoryRepository';
 
 @NgModule({
@@ -15,8 +15,7 @@ import { sharedExpensesInMemoryRepository } from './features/sharedExpenses/infr
 })
 export class AppModule {
   constructor() {
-    getFriendsQuery().build({
-      repository: sharedExpensesInMemoryRepository(),
-    });
+    const { build } = getFriendsUseCase();
+    build({ repository: sharedExpensesInMemoryRepository() });
   }
 }

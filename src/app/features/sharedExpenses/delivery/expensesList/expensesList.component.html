@@ -1,0 +1,14 @@
+<div class="container">
+  <div>
+    <h1>Listado de amigos</h1>
+
+    <table>
+      <tr>
+        <th>Nombre</th>
+      </tr>
+      <tr *ngFor="let friend of friends">
+        <td>{{ friend.name }}</td>
+      </tr>
+    </table>
+  </div>
+</div>
