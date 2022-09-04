@@ -3,7 +3,7 @@ import { Friend } from '../domain/friends';
 import { SharedExpensesRepository } from '../domain/sharedExpensesRepository';
 import { addExpenseUseCase } from './addExpenseUseCase';
 import { addFriendUseCase } from './addFriendsUseCase';
-import { getFriendsBalanceUseCase } from './getFriendsBalanceUseCase';
+import { getBalanceUseCase } from './getBalanceUseCase';
 import { getExpensesUseCase } from './getExpensesUseCase';
 import { getFriendsUseCase } from './getFriendsUseCase';
 
@@ -22,8 +22,8 @@ export const sharedExpensesService = {
     addExpenseUseCase({ repository: initialDependencies.repository }, expense),
   getExpensesUseCase: () =>
     getExpensesUseCase({ repository: initialDependencies.repository }),
-  getFriendsBalanceUseCase: () =>
-    getFriendsBalanceUseCase({ repository: initialDependencies.repository }),
+  getBalanceUseCase: () =>
+    getBalanceUseCase({ repository: initialDependencies.repository }),
   build: (dependencies: Dependencies) =>
     Object.assign(initialDependencies, dependencies),
 };

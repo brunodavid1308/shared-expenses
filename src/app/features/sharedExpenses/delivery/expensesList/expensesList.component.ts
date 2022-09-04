@@ -29,7 +29,7 @@ export class ExpensesListComponent implements OnInit {
   async onLoad() {
     this.friends = await sharedExpensesService.getFriendsUseCase();
     this.expenses = await sharedExpensesService.getExpensesUseCase();
-    this.balances = await sharedExpensesService.getFriendsBalanceUseCase();
+    this.balances = await sharedExpensesService.getBalanceUseCase();
   }
 
   onAddFriend() {
@@ -77,6 +77,6 @@ export class ExpensesListComponent implements OnInit {
   }
 
   async updateBalance() {
-    this.balances = await sharedExpensesService.getFriendsBalanceUseCase();
+    this.balances = await sharedExpensesService.getBalanceUseCase();
   }
 }

@@ -7,7 +7,7 @@ interface Dependencies {
   repository: SharedExpensesRepository;
 }
 
-export const getFriendsBalanceUseCase = async ({
+export const getBalanceUseCase = async ({
   repository,
 }: Dependencies): Promise<Balance[]> => {
   const balances: Balance[] = [];

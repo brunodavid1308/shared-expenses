@@ -1,7 +1,7 @@
 import { SharedExpensesRepository } from '../domain/sharedExpensesRepository';
-import { getFriendsBalanceUseCase } from './getFriendsBalanceUseCase';
+import { getBalanceUseCase } from './getBalanceUseCase';
 
-describe('GetFriendsBalanceUseCase', () => {
+describe('GetBalanceUseCase', () => {
   it('should get friends balance', async () => {
     const friendsExamples = [
       {
@@ -32,7 +32,7 @@ describe('GetFriendsBalanceUseCase', () => {
       addExpense: jest.fn().mockResolvedValue(null),
     };
 
-    const friendsBalance = await getFriendsBalanceUseCase({ repository });
+    const friendsBalance = await getBalanceUseCase({ repository });
 
     expect(friendsBalance).toEqual([
       {
