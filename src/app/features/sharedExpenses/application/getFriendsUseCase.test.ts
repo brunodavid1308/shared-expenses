@@ -16,6 +16,8 @@ describe('GetFriendsUseCase', () => {
     const repository: SharedExpensesRepository = {
       getFriends: jest.fn().mockResolvedValue(friendsExamples),
       addFriend: jest.fn().mockResolvedValue(null),
+      addExpense: jest.fn().mockResolvedValue(null),
+      getExpenses: jest.fn().mockResolvedValue([]),
     };
 
     const friends = await getFriendsUseCase({ repository });

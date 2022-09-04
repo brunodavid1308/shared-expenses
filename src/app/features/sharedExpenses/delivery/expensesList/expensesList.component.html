@@ -1,6 +1,6 @@
 <div class="container">
-  <div>
-    <h1>Listado de amigos</h1>
+  <div class="column">
+    <h1>Añadir amigo</h1>
 
     <div class="form">
       <div class="form-group">
@@ -21,12 +21,104 @@
       </button>
     </div>
 
+    <h1>Listado de amigos</h1>
+
     <table>
       <tr>
         <th>Nombre</th>
       </tr>
       <tr *ngFor="let friend of friends">
         <td>{{ friend.name }}</td>
+      </tr>
+    </table>
+  </div>
+
+  <div class="column">
+    <h1>Añadir gasto</h1>
+
+    <div class="form">
+      <div class="form-group">
+        <label for="debtor">Quién</label>
+        <select
+          class="form-control"
+          id="debtor"
+          name="debtor"
+          [formControl]="debtor"
+          required
+        >
+          <option *ngFor="let friend of friends" [value]="friend.name">
+            {{ friend.name }}
+          </option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="amount">Cantidad (€)</label>
+        <input
+          type="number"
+          class="form-control"
+          placeholder="..."
+          id="amount"
+          name="amount"
+          [formControl]="amount"
+          required
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="description">Descripción</label>
+        <input
+          type="text"
+          class="form-control"
+          placeholder="..."
+          id="description"
+          name="description"
+          [formControl]="description"
+          required
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="date">Fecha</label>
+        <input
+          type="datetime-local"
+          class="form-control"
+          placeholder="..."
+          id="date"
+          name="date"
+          [formControl]="date"
+          required
+        />
+      </div>
+
+      <button type="submit" class="btn btn-primary" (click)="onAddExpense()">
+        Añadir gasto
+      </button>
+    </div>
+    <h1>Listado de gastos</h1>
+
+    <table>
+      <tr>
+        <th>Quién</th>
+        <th>Cantidad (€)</th>
+        <th>Descripción</th>
+        <th>Fecha</th>
+      </tr>
+      <tr *ngFor="let expense of getExpenses()">
+        <td>{{ expense.debtor.name }}</td>
+        <td>{{ expense.amount }}</td>
+        <td>{{ expense.description }}</td>
+        <td>
+          {{
+            expense.date.toLocaleDateString("es-ES", {
+              weekday: "long",
+              month: "long",
+              day: "numeric",
+              hour: "numeric",
+              minute: "numeric"
+            })
+          }}
+        </td>
       </tr>
     </table>
   </div>
