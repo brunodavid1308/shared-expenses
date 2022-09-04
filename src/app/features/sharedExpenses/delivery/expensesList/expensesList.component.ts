@@ -3,6 +3,7 @@ import { Friend } from '../../domain/friends';
 import { FormControl } from '@angular/forms';
 import { sharedExpensesService } from '../../application';
 import { Expense } from '../../domain/expense';
+import { Balance } from '../../domain/balance';
 
 @Component({
   selector: 'app-expenses-list',
@@ -12,6 +13,7 @@ import { Expense } from '../../domain/expense';
 export class ExpensesListComponent implements OnInit {
   friends: Friend[] = [];
   expenses: Expense[] = [];
+  balances: Balance[] = [];
   name = new FormControl('');
   debtor = new FormControl('');
   amount = new FormControl('');
@@ -27,6 +29,7 @@ export class ExpensesListComponent implements OnInit {
   async onLoad() {
     this.friends = await sharedExpensesService.getFriendsUseCase();
     this.expenses = await sharedExpensesService.getExpensesUseCase();
+    this.balances = await sharedExpensesService.getFriendsBalanceUseCase();
   }
 
   onAddFriend() {
@@ -37,6 +40,7 @@ export class ExpensesListComponent implements OnInit {
 
     this.name.setValue('');
     sharedExpensesService.addFriendUseCase({ name, id: '1' });
+    this.updateBalance();
   }
 
   onAddExpense() {
@@ -61,6 +65,7 @@ export class ExpensesListComponent implements OnInit {
       description,
       date: new Date(date),
     });
+    this.updateBalance();
   }
 
   getExpenses() {
@@ -69,5 +74,9 @@ export class ExpensesListComponent implements OnInit {
 
     this.expenses = this.expenses.sort(sortedDesc);
     return this.expenses;
+  }
+
+  async updateBalance() {
+    this.balances = await sharedExpensesService.getFriendsBalanceUseCase();
   }
 }
