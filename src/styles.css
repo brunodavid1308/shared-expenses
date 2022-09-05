@@ -30,10 +30,10 @@ body {
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
   font-family: Arial, Helvetica, sans-serif;
-  font-size: 14px;
+  font-size: var(--font-size-base);
   line-height: 1.5;
   color: #333;
-  background-color: #fff;
+  background-color: var(--color-secondary);
   margin: 0px;
 }
 /*
@@ -67,4 +67,25 @@ h4,
 h5,
 h6 {
   overflow-wrap: break-word;
+}
+
+/*
+  Custom properties
+*/
+
+:root {
+  --color-primary: #142d4c;
+  --color-secondary: #ececec;
+
+  --font-color-primary: #333;
+  --font-color-secondary: #ececec;
+  --font-size-base: 1rem;
+
+  --spacing-xsmall: 0.5rem;
+  --spacing-small: 1rem;
+  --spacing-medium: 2rem;
+  --spacing-large: 3rem;
+  --spacing-xlarge: 4rem;
+
+  --input-background-color: #ffffff85;
 }
