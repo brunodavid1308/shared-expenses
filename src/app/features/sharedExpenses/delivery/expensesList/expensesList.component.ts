@@ -4,6 +4,7 @@ import { FormControl } from '@angular/forms';
 import { sharedExpensesService } from '../../application';
 import { Expense } from '../../domain/expense';
 import { Balance } from '../../domain/balance';
+import { Debt } from '../../domain/debt';
 
 @Component({
   selector: 'app-expenses-list',
@@ -14,6 +15,7 @@ export class ExpensesListComponent implements OnInit {
   friends: Friend[] = [];
   expenses: Expense[] = [];
   balances: Balance[] = [];
+  debts: Debt[] = [];
   name = new FormControl('');
   debtor = new FormControl('');
   amount = new FormControl('');
@@ -30,6 +32,7 @@ export class ExpensesListComponent implements OnInit {
     this.friends = await sharedExpensesService.getFriendsUseCase();
     this.expenses = await sharedExpensesService.getExpensesUseCase();
     this.balances = await sharedExpensesService.getBalanceUseCase();
+    this.debts = await sharedExpensesService.getDebtsUseCase();
   }
 
   onAddFriend() {
@@ -41,6 +44,7 @@ export class ExpensesListComponent implements OnInit {
     this.name.setValue('');
     sharedExpensesService.addFriendUseCase({ name, id: '1' });
     this.updateBalance();
+    this.updateDebts();
   }
 
   onAddExpense() {
@@ -65,12 +69,14 @@ export class ExpensesListComponent implements OnInit {
       description,
       date: new Date(date),
     });
+    this.updateExpenses();
     this.updateBalance();
+    this.updateDebts();
   }
 
   getExpenses() {
     const sortedDesc = (objA: Expense, objB: Expense) =>
-      Number(objA.date) - Number(objB.date);
+      Number(objB.date) - Number(objA.date);
 
     this.expenses = this.expenses.sort(sortedDesc);
     return this.expenses;
@@ -78,5 +84,13 @@ export class ExpensesListComponent implements OnInit {
 
   async updateBalance() {
     this.balances = await sharedExpensesService.getBalanceUseCase();
+  }
+
+  async updateDebts() {
+    this.debts = await sharedExpensesService.getDebtsUseCase();
+  }
+
+  async updateExpenses() {
+    this.expenses = await sharedExpensesService.getExpensesUseCase();
   }
 }

@@ -4,6 +4,7 @@ import { SharedExpensesRepository } from '../domain/sharedExpensesRepository';
 import { addExpenseUseCase } from './addExpenseUseCase';
 import { addFriendUseCase } from './addFriendsUseCase';
 import { getBalanceUseCase } from './getBalanceUseCase';
+import { getDebtsUseCase } from './getDebtsUseCase';
 import { getExpensesUseCase } from './getExpensesUseCase';
 import { getFriendsUseCase } from './getFriendsUseCase';
 
@@ -24,6 +25,8 @@ export const sharedExpensesService = {
     getExpensesUseCase({ repository: initialDependencies.repository }),
   getBalanceUseCase: () =>
     getBalanceUseCase({ repository: initialDependencies.repository }),
+  getDebtsUseCase: () =>
+    getDebtsUseCase({ repository: initialDependencies.repository }),
   build: (dependencies: Dependencies) =>
     Object.assign(initialDependencies, dependencies),
 };

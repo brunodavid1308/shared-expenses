@@ -122,7 +122,9 @@
       </tr>
     </table>
   </div>
+</div>
 
+<div class="container">
   <div class="column">
     <h1>Balance</h1>
 
@@ -134,6 +136,22 @@
       <tr *ngFor="let balance of balances">
         <td>{{ balance.friend.name }}</td>
         <td>{{ balance.balance.toFixed(2) }} €</td>
+      </tr>
+    </table>
+  </div>
+  <div class="column">
+    <h1>Deudas</h1>
+
+    <table>
+      <tr>
+        <th>Quíen</th>
+        <th>A quién</th>
+        <th>Cantidad</th>
+      </tr>
+      <tr *ngFor="let debt of debts">
+        <td>{{ debt.from.name }}</td>
+        <td>{{ debt.to.name }}</td>
+        <td>{{ debt.amount.toFixed(2) }} €</td>
       </tr>
     </table>
   </div>
