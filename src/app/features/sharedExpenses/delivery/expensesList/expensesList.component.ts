@@ -45,6 +45,7 @@ export class ExpensesListComponent implements OnInit {
     sharedExpensesService.addFriendUseCase({ name, id: '1' });
     this.updateBalance();
     this.updateDebts();
+    this.updateFriends()
   }
 
   onAddExpense() {
@@ -80,6 +81,11 @@ export class ExpensesListComponent implements OnInit {
 
     this.expenses = this.expenses.sort(sortedDesc);
     return this.expenses;
+  }
+
+
+  async updateFriends() {
+    this.friends = await sharedExpensesService.getFriendsUseCase();
   }
 
   async updateBalance() {
