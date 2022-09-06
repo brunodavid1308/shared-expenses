@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { isDevMode, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -7,6 +7,7 @@ import { ExpensesListComponent } from './features/sharedExpenses/delivery/expens
 import { sharedExpensesInMemoryRepository } from './features/sharedExpenses/infraestructure/sharedExpensesInMemoryRepository';
 import { ReactiveFormsModule } from '@angular/forms';
 import { sharedExpensesService } from './features/sharedExpenses/application/sharedExpensesService';
+import { sharedExpensesLocalStorageRepository } from './features/sharedExpenses/infraestructure/shareExpensesLocalStorageRepository';
 
 @NgModule({
   declarations: [AppComponent, ExpensesListComponent],
@@ -16,7 +17,9 @@ import { sharedExpensesService } from './features/sharedExpenses/application/sha
 })
 export class AppModule {
   constructor() {
-    const repository = sharedExpensesInMemoryRepository();
+    const repository = isDevMode()
+      ? sharedExpensesInMemoryRepository()
+      : sharedExpensesLocalStorageRepository();
 
     sharedExpensesService.build({ repository });
   }
