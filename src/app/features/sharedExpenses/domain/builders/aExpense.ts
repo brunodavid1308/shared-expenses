@@ -1,4 +1,5 @@
 import { Expense } from '../expense';
+import { Friend } from '../friends';
 
 export const aExpense = (...options: Partial<Expense>[]) => {
   const defaults: Expense = {
@@ -16,3 +17,5 @@ export const aExpense = (...options: Partial<Expense>[]) => {
 };
 
 export const withAmount = (amount: number) => ({ amount });
+
+export const withDebtor = (debtor: Friend) => ({ debtor});
