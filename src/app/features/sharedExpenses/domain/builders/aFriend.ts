@@ -2,8 +2,8 @@ import { Friend } from '../friends';
 
 export const aFriend = (...options: Partial<Friend>[]) => {
   const defaults: Friend = {
-    id: '',
-    name: '',
+    id: 'irrelevantId',
+    name: 'irrelevantName',
   };
 
   return Object.assign({}, defaults, ...options);
