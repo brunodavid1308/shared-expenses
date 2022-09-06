@@ -1,6 +1,6 @@
 import { Friend } from '../friends';
 
-export const aFriend = (...options: Partial<Friend>[]) => {
+export const aFriend = (...options: Partial<Friend>[]): Friend => {
   const defaults: Friend = {
     id: 'irrelevantId',
     name: 'irrelevantName',

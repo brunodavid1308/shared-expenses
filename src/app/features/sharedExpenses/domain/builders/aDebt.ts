@@ -1,7 +1,7 @@
 import { Debt } from '../debt';
 import { Friend } from '../friends';
 
-export const aDebt = (...options: Partial<Debt>[]) => {
+export const aDebt = (...options: Partial<Debt>[]): Debt => {
   const defaults: Debt = {
     from: {
       name: '',

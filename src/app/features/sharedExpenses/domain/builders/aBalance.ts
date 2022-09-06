@@ -1,7 +1,7 @@
 import { Balance } from '../balance';
 import { Friend } from '../friends';
 
-export const aBalance = (...options: Partial<Balance>[]) => {
+export const aBalance = (...options: Partial<Balance>[]): Balance => {
   const defaults: Balance = {
     friend: {
       name: '',

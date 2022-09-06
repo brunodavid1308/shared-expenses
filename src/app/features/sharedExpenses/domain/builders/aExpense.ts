@@ -1,7 +1,7 @@
 import { Expense } from '../expense';
 import { Friend } from '../friends';
 
-export const aExpense = (...options: Partial<Expense>[]) => {
+export const aExpense = (...options: Partial<Expense>[]): Expense => {
   const defaults: Expense = {
     id: 'irrelevantId',
     amount: 0,
