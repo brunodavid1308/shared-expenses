@@ -4,7 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ExpensesListComponent } from './features/sharedExpenses/delivery/expensesList/expensesList.component';
-import { sharedExpensesInMemoryRepository } from './features/sharedExpenses/infraestructure/SharedExpensesInMemoryRepository';
+import { sharedExpensesInMemoryRepository } from './features/sharedExpenses/infraestructure/sharedExpensesInMemoryRepository';
 import { ReactiveFormsModule } from '@angular/forms';
 import { sharedExpensesService } from './features/sharedExpenses/application/sharedExpensesService';
 
