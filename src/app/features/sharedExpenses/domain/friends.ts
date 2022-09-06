@@ -1,4 +1,6 @@
+import { Id } from "./id";
+
 export interface Friend {
-  id: string;
+  id: Id;
   name: string;
 }
