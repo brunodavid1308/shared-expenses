@@ -42,7 +42,8 @@
     "preset": "jest-preset-angular",
     "testMatch": [
       "**/__tests__/**/*.[jt]s?(x)",
-      "**/?(*.)+(test).[jt]s?(x)"
-    ]
+      "**/?(*.)+(test|spec).[jt]s?(x)"
+    ],
+    "setupFilesAfterEnv": ["<rootDir>/src/setupJest.ts"]
   }
 }
