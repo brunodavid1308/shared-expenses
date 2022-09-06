@@ -1,8 +1,8 @@
 import { aFriend, withId, withName } from '../domain/builders/aFriend';
 import { SharedExpensesRepository } from '../domain/sharedExpensesRepository';
-import { addFriendUseCase } from './addFriendsUseCase';
+import { addFriendUseCase } from './addFriendUseCase';
 
-describe('AddFriendsUseCase', () => {
+describe('AddFriendUseCase', () => {
   it('should add a friend to the group of friends', async () => {
     const repository: SharedExpensesRepository = {
       getFriends: jest.fn().mockResolvedValue([]),

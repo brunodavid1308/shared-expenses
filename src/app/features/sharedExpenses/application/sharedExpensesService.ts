@@ -2,7 +2,7 @@ import { Expense } from '../domain/expense';
 import { Friend } from '../domain/friends';
 import { SharedExpensesRepository } from '../domain/sharedExpensesRepository';
 import { addExpenseUseCase } from './addExpenseUseCase';
-import { addFriendUseCase } from './addFriendsUseCase';
+import { addFriendUseCase } from './addFriendUseCase';
 import { getBalanceUseCase } from './getBalanceUseCase';
 import { getDebtsUseCase } from './getDebtsUseCase';
 import { getExpensesUseCase } from './getExpensesUseCase';
