@@ -1,28 +1,16 @@
+import { aFriend, withId, withName } from '../domain/builders/aFriend';
 import { SharedExpensesRepository } from '../domain/sharedExpensesRepository';
 import { addFriendUseCase } from './addFriendsUseCase';
 
 describe('AddFriendsUseCase', () => {
   it('should add a friend to the group of friends', async () => {
-    const friendsExamples = [
-      {
-        id: '1',
-        name: 'Friend 1',
-      },
-      {
-        id: '2',
-        name: 'Friend 2',
-      },
-    ];
     const repository: SharedExpensesRepository = {
-      getFriends: jest.fn().mockResolvedValue(friendsExamples),
+      getFriends: jest.fn().mockResolvedValue([]),
       addFriend: jest.fn().mockResolvedValue(null),
       addExpense: jest.fn().mockResolvedValue(null),
       getExpenses: jest.fn().mockResolvedValue([]),
     };
-    const newFriend = {
-      id: '3',
-      name: 'Friend 3',
-    };
+    const newFriend = aFriend(withId('1'), withName('Pedro'));
 
     await addFriendUseCase({ repository }, newFriend);
 
