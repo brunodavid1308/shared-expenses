@@ -18,8 +18,10 @@ export const getDebtsUseCase = async ({ repository }: Dependencies) => {
 
     const fromBalance = balancesCopy[0];
     const toBalance = balancesCopy[balancesCopy.length - 1];
-    const amount = -fromBalance.balance > toBalance.balance ? toBalance.balance : -fromBalance.balance;
-
+    const amount =
+      -fromBalance.balance > toBalance.balance
+        ? toBalance.balance
+        : -fromBalance.balance;
 
     // Everybody settles the debt
     if (amount === 0) {

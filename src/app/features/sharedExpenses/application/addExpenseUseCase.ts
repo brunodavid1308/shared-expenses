@@ -1,13 +1,15 @@
-import { Expense } from "../domain/expense";
-import { SharedExpensesRepository } from "../domain/sharedExpensesRepository";
+import { Expense } from '../domain/expense';
+import { SharedExpensesRepository } from '../domain/sharedExpensesRepository';
 
 interface Dependencies {
-    repository: SharedExpensesRepository;
-  }
+  repository: SharedExpensesRepository;
+}
 
-export const addExpenseUseCase = (dependencies: Dependencies, expense: Expense) => {
-    const { repository } = dependencies;
-  
-    return repository.addExpense(expense);
-  }
+export const addExpenseUseCase = (
+  dependencies: Dependencies,
+  expense: Expense
+) => {
+  const { repository } = dependencies;
 
+  return repository.addExpense(expense);
+};

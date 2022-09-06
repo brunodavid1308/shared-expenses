@@ -1,9 +1,9 @@
-import { SharedExpensesRepository } from "../domain/sharedExpensesRepository";
+import { SharedExpensesRepository } from '../domain/sharedExpensesRepository';
 
 interface Dependencies {
-    repository: SharedExpensesRepository;
+  repository: SharedExpensesRepository;
 }
 
 export const getExpensesUseCase = ({ repository }: Dependencies) => {
-    return repository.getExpenses();
-}
+  return repository.getExpenses();
+};
