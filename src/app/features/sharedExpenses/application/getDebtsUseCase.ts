@@ -8,11 +8,15 @@ interface Dependencies {
 }
 
 export const getDebtsUseCase = async ({ repository }: Dependencies) => {
-  const debts: Debt[] = [];
   const balances = await getBalanceUseCase({ repository });
+
+  return calculateFriendsDebts(balances);
+};
+
+function calculateFriendsDebts(balances: Balance[]): Debt[] {
+  const debts: Debt[] = [];
   let balancesCopy: Balance[] = balances;
   let resolvedFriend = 0;
-
   while (resolvedFriend < balancesCopy.length) {
     balancesCopy = balancesCopy.sort(sortAscending);
 
@@ -23,7 +27,6 @@ export const getDebtsUseCase = async ({ repository }: Dependencies) => {
         ? toBalance.balance
         : -fromBalance.balance;
 
-    // Everybody settles the debt
     if (amount === 0) {
       break;
     }
@@ -41,7 +44,7 @@ export const getDebtsUseCase = async ({ repository }: Dependencies) => {
   }
 
   return debts;
-};
+}
 
 function sortAscending(a: Balance, b: Balance) {
   if (a.balance < b.balance) {
