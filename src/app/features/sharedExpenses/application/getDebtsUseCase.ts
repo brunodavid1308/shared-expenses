@@ -1,14 +1,20 @@
 import { Balance } from '../domain/balance';
 import { Debt } from '../domain/debt';
 import { SharedExpensesRepository } from '../domain/sharedExpensesRepository';
-import { getBalanceUseCase } from './getBalanceUseCase';
+import { FriendsBalanceService } from '../domain/friendsBalanceService';
 
 interface Dependencies {
   repository: SharedExpensesRepository;
+  friendsBalanceService: FriendsBalanceService;
 }
 
-export const getDebtsUseCase = async ({ repository }: Dependencies) => {
-  const balances = await getBalanceUseCase({ repository });
+export const getDebtsUseCase = async ({
+  repository,
+  friendsBalanceService,
+}: Dependencies) => {
+  const friends = await repository.getFriends();
+  const expenses = await repository.getExpenses();
+  const balances = friendsBalanceService.getBalances(friends, expenses);
 
   return calculateFriendsDebts(balances);
 };

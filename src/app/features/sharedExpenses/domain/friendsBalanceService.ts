@@ -1,6 +1,10 @@
-import { Balance } from '../domain/balance';
-import { Expense } from '../domain/expense';
-import { Friend } from '../domain/friends';
+import { Balance } from './balance';
+import { Expense } from './expense';
+import { Friend } from './friends';
+
+export interface FriendsBalanceService {
+  getBalances(friends: Friend[], expenses: Expense[]): Balance[];
+}
 
 export const friendsBalanceService = {
   getBalances,

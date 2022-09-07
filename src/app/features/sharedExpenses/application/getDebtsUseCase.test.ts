@@ -1,11 +1,9 @@
 import { aBalance, withBalance, withFriend } from '../domain/builders/aBalance';
 import { aDebt, withAmount, withFrom, withTo } from '../domain/builders/aDebt';
 import { aFriend, withName } from '../domain/builders/aFriend';
+import { FriendsBalanceService } from '../domain/friendsBalanceService';
 import { SharedExpensesRepository } from '../domain/sharedExpensesRepository';
-import * as getBalanceUseCaseService from './getBalanceUseCase';
 import { getDebtsUseCase } from './getDebtsUseCase';
-
-jest.mock('./getBalanceUseCase');
 
 describe('GetDebtsUseCase', () => {
   it('should return friends debts', async () => {
@@ -15,15 +13,17 @@ describe('GetDebtsUseCase', () => {
       addExpense: jest.fn().mockResolvedValue(null),
       getExpenses: jest.fn().mockResolvedValue([]),
     };
-    jest
-      .spyOn(getBalanceUseCaseService, 'getBalanceUseCase')
-      .mockResolvedValue([
-        aBalance(withFriend(aFriend(withName('Pedro'))), withBalance(50)),
-        aBalance(withFriend(aFriend(withName('Jesus'))), withBalance(0)),
-        aBalance(withFriend(aFriend(withName('Maria'))), withBalance(-50)),
-      ]);
+    const friendsBalanceService: FriendsBalanceService = {
+      getBalances: jest
+        .fn()
+        .mockReturnValue([
+          aBalance(withFriend(aFriend(withName('Pedro'))), withBalance(50)),
+          aBalance(withFriend(aFriend(withName('Jesus'))), withBalance(0)),
+          aBalance(withFriend(aFriend(withName('Maria'))), withBalance(-50)),
+        ]),
+    };
 
-    const debts = await getDebtsUseCase({ repository });
+    const debts = await getDebtsUseCase({ repository, friendsBalanceService });
 
     expect(debts).toEqual([
       aDebt(
