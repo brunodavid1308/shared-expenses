@@ -6,7 +6,7 @@ import { AppComponent } from './app.component';
 import { ExpensesListComponent } from './features/sharedExpenses/delivery/expensesList/expensesList.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { sharedExpensesService } from './features/sharedExpenses/application/sharedExpensesService';
-import { sharedExpensesLocalStorageRepository } from './features/sharedExpenses/infraestructure/shareExpensesLocalStorageRepository';
+import { sharedExpensesLocalStorageRepository } from './features/sharedExpenses/infraestructure/sharedExpensesLocalStorageRepository';
 import { sharedExpensesInMemoryRepository } from './features/sharedExpenses/infraestructure/sharedExpensesInMemoryRepository';
 
 @NgModule({
